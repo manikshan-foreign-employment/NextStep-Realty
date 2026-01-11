@@ -4,16 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NextStep Realty | Professional Real Estate Services</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --primary-color: #0a192f; /* Dark Navy */
-            --accent-color: #c5a059; /* Elegant Gold */
-            --text-light: #ffffff;
-            --text-dark: #333333;
-            --bg-light: #f8f9fa;
+            --primary: #0f172a;
+            --accent: #d4af37; /* Gold Accent */
+            --accent-hover: #b8962e;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.1);
         }
 
         * {
@@ -28,185 +32,219 @@
         }
 
         body {
-            color: var(--text-dark);
+            background-color: #f1f5f9;
+            color: var(--primary);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* --- Hero Section --- */
-        header {
+        /* --- Hero Section with Updated Image Name --- */
+        .hero {
+            position: relative;
             height: 100vh;
-            background: linear-gradient(rgba(10, 25, 47, 0.8), rgba(10, 25, 47, 0.8)), 
-                        url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: var(--text-light);
-            padding: 0 20px;
+            color: var(--white);
+            /* Background image set to your specific filename */
+            background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), 
+                        url('background.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
-        .hero-content h1 {
-            font-size: 4rem;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
+        .hero-content {
+            max-width: 900px;
+            padding: 20px;
+            z-index: 2;
         }
 
-        .hero-content p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 3vw, 1.25rem);
+            margin-bottom: 2rem;
+            color: #cbd5e1;
             font-weight: 300;
         }
 
-        .btn-main {
-            padding: 12px 30px;
-            background: var(--accent-color);
-            color: white;
+        .cta-button {
+            display: inline-block;
+            padding: 15px 35px;
+            background-color: var(--accent);
+            color: var(--primary);
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
-            transition: 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
-        .btn-main:hover {
-            background: #b08d4a;
+        .cta-button:hover {
             transform: translateY(-3px);
+            background-color: var(--white);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         }
 
-        /* --- Sections --- */
+        /* --- Global Sections --- */
         section {
-            padding: 100px 10%;
+            padding: 100px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .section-title {
+        .section-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
-        .section-title h2 {
+        .section-header h2 {
             font-size: 2.5rem;
-            color: var(--primary-color);
+            color: var(--primary);
             position: relative;
-            padding-bottom: 15px;
+            display: inline-block;
+            margin-bottom: 15px;
         }
 
-        .section-title h2::after {
+        .section-header h2::after {
             content: '';
-            width: 80px;
-            height: 3px;
-            background: var(--accent-color);
             position: absolute;
-            bottom: 0;
+            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
         }
 
-        /* --- Grid Layouts --- */
-        .grid-3 {
+        /* --- Feature Cards --- */
+        .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
 
         .card {
-            background: white;
+            background: var(--white);
             padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: 0.4s;
-            border-bottom: 4px solid transparent;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
         }
 
         .card:hover {
             transform: translateY(-10px);
-            border-bottom: 4px solid var(--accent-color);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
         }
 
         .card i {
             font-size: 2.5rem;
-            color: var(--accent-color);
+            color: var(--accent);
             margin-bottom: 20px;
         }
 
-        /* --- About Section --- */
-        .about-flex {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-            flex-wrap: wrap;
+        .card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
         }
 
-        .about-text { flex: 1; min-width: 300px; }
-        .about-img { flex: 1; min-width: 300px; }
-        .about-img img { width: 100%; border-radius: 20px; box-shadow: 20px 20px 0 var(--accent-color); }
-
-        /* --- Client Segment --- */
-        .client-section {
-            background: var(--bg-light);
+        /* --- Client Segments --- */
+        .client-grid {
+            background: var(--primary);
+            color: var(--white);
+            padding: 60px;
+            border-radius: 30px;
+            text-align: center;
         }
 
-        .tag-container {
+        .tag-cloud {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
             justify-content: center;
-            margin-top: 20px;
+            gap: 12px;
+            margin-top: 30px;
         }
 
         .tag {
-            background: white;
+            background: var(--glass);
             padding: 8px 20px;
             border-radius: 50px;
-            border: 1px solid #ddd;
-            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.9rem;
         }
 
-        /* --- Mission & Vision --- */
-        .vision-mission {
-            background: var(--primary-color);
+        /* --- Mission/Vision Display --- */
+        .vision-box {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             color: white;
+            padding: 60px;
+            border-radius: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
         }
 
-        .vision-mission h2 { color: white; }
+        @media (max-width: 768px) {
+            .vision-box { grid-template-columns: 1fr; padding: 40px 20px; }
+        }
 
-        /* --- Floating WhatsApp Button --- */
-        .whatsapp-float {
+        /* --- Floating WhatsApp Branding --- */
+        .whatsapp-btn {
             position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 40px;
-            right: 40px;
+            bottom: 30px;
+            right: 30px;
+            width: 65px;
+            height: 65px;
             background-color: #25d366;
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 3px #999;
-            z-index: 100;
+            color: white;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 35px;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
             text-decoration: none;
-            transition: 0.3s;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            background-color: #128C7E;
+        .whatsapp-btn:hover {
+            transform: scale(1.1) rotate(10deg);
+            background-color: #128c7e;
         }
 
         /* --- Footer --- */
         footer {
-            background: #050c16;
-            color: white;
+            background: var(--primary);
+            color: var(--text-muted);
+            padding: 60px 5% 30px;
             text-align: center;
-            padding: 50px 20px;
         }
 
-        /* Scroll Animation Class */
+        .footer-logo {
+            color: var(--white);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .footer-quote {
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        /* Reveal Animation Styles */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -217,142 +255,125 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.5rem; }
-            section { padding: 60px 5%; }
-        }
     </style>
 </head>
 <body>
 
-    <header>
+    <!-- Hero Section -->
+    <header class="hero">
         <div class="hero-content">
-            <h1>NextStep Realty</h1>
-            <p>Guiding buyers and sellers through their next step with confidence.</p>
-            <a href="#about" class="btn-main">Learn More</a>
+            <h1 class="reveal">NextStep Realty</h1>
+            <p class="reveal">Guiding buyers and sellers through their next step with confidence.</p>
+            <a href="#about" class="cta-button reveal">Learn More About Us</a>
         </div>
     </header>
 
+    <!-- Who We Are -->
     <section id="about">
-        <div class="about-flex reveal">
-            <div class="about-text">
-                <div class="section-title" style="text-align: left;">
-                    <h2>Who We Are</h2>
-                </div>
-                <p><strong>NextStep Realty</strong> is a professional real estate agency focused on making the buying and selling of property simple, structured, and stress-free.</p>
-                <br>
-                <p>We work with property owners, developers, buyers, and investors across all segments of the real estate market. Our role is to connect genuine buyers with genuine sellers and to support transactions with clarity and professionalism.</p>
-            </div>
-            <div class="about-img">
-                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Real Estate Professional">
-            </div>
+        <div class="section-header reveal">
+            <h2>Who We Are</h2>
+            <p style="max-width: 800px; margin: 20px auto;">We work with property owners, developers, buyers, and investors across all segments of the real estate market. Our role is to connect genuine parties with clarity and professionalism.</p>
         </div>
-    </section>
-
-    <section class="client-section">
-        <div class="section-title reveal">
-            <h2>Why We Exist</h2>
-            <p>Property transactions are complex. We are here to simplify them.</p>
-        </div>
-        <div class="grid-3 reveal">
+        <div class="grid reveal">
             <div class="card">
-                <i class="fas fa-layer-group"></i>
-                <h3>Simplifying Process</h3>
-                <p>Reducing complexity in every step of the transaction.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-comments"></i>
-                <h3>Clear Communication</h3>
-                <p>Reducing confusion and information gaps for all parties.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-bolt"></i>
-                <h3>Efficiency</h3>
-                <p>Helping transactions progress smoothly and professionally.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="services">
-        <div class="section-title reveal">
-            <h2>What We Do</h2>
-        </div>
-        <div class="grid-3 reveal">
-            <div class="card">
-                <i class="fas fa-home"></i>
+                <i class="fas fa-building"></i>
                 <h3>Full Segment Agency</h3>
-                <p>Residential, Condominiums, Estates, and Leisure properties.</p>
+                <p>Residential properties, condominiums, estates, and leisure or holiday properties.</p>
             </div>
             <div class="card">
-                <i class="fas fa-handshake"></i>
-                <h3>Transaction Facilitation</h3>
-                <p>Connecting genuine buyers and sellers with expert guidance.</p>
+                <i class="fas fa-handshake-simple"></i>
+                <h3>Transaction Clarity</h3>
+                <p>Supporting transactions from introduction through to successful completion with ethical conduct.</p>
             </div>
             <div class="card">
-                <i class="fas fa-calendar-check"></i>
-                <h3>Meeting Coordination</h3>
-                <p>Arranging viewings, site visits, and professional follow-ups.</p>
+                <i class="fas fa-heart"></i>
+                <h3>Long-term Trust</h3>
+                <p>Relationship-driven approach focused on long-term partnerships rather than one-off deals.</p>
             </div>
         </div>
     </section>
 
-    <section class="client-section">
-        <div class="section-title reveal">
-            <h2>Our Client Segment</h2>
-            <p>We serve a diverse range of clients locally and globally.</p>
+    <!-- Why We Exist & Services -->
+    <section style="background-color: #f8fafc; border-radius: 50px;">
+        <div class="section-header reveal">
+            <h2>Why We Exist</h2>
+            <p>Property transactions are complex and time-consuming. We make them easier.</p>
         </div>
-        <div class="tag-container reveal">
-            <span class="tag">Local Buyers & Sellers</span>
-            <span class="tag">Overseas Investors</span>
-            <span class="tag">Europe</span>
-            <span class="tag">Middle East</span>
-            <span class="tag">Australia</span>
-            <span class="tag">New Zealand</span>
-            <span class="tag">Canada</span>
+        <div class="grid reveal">
+            <div class="card">
+                <i class="fas fa-check-double"></i>
+                <h3>Simplicity</h3>
+                <p>Simplifying the transaction process and reducing information gaps.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-users-gear"></i>
+                <h3>Coordination</h3>
+                <p>Coordinating all parties professionally to ensure smooth progress.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-chart-pie"></i>
+                <h3>Efficiency</h3>
+                <p>Helping transactions progress efficiently through disciplined engagement.</p>
+            </div>
         </div>
     </section>
 
-    <section class="vision-mission">
-        <div class="grid-3 reveal">
-            <div>
-                <h2>Our Vision</h2>
-                <p>To be a trusted and dependable real estate agency, recognized for making property transactions simple, transparent, and reliable for all stakeholders.</p>
+    <!-- Client Reach -->
+    <section>
+        <div class="client-grid reveal">
+            <h2>Global & Local Reach</h2>
+            <p>Our client base spans across continents and various price points.</p>
+            <div class="tag-cloud">
+                <span class="tag">Local Market</span>
+                <span class="tag">Overseas Investors</span>
+                <span class="tag">Europe</span>
+                <span class="tag">Middle East</span>
+                <span class="tag">Australia</span>
+                <span class="tag">New Zealand</span>
+                <span class="tag">Canada</span>
             </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Details -->
+    <section>
+        <div class="vision-box reveal">
             <div>
-                <h2>Our Mission</h2>
-                <ul style="list-style: none; padding-top: 10px;">
-                    <li><i class="fas fa-check-circle" style="color: var(--accent-color);"></i> Simplify buying and selling.</li>
-                    <li><i class="fas fa-check-circle" style="color: var(--accent-color);"></i> Guide with clarity.</li>
-                    <li><i class="fas fa-check-circle" style="color: var(--accent-color);"></i> Ethical connection of parties.</li>
-                    <li><i class="fas fa-check-circle" style="color: var(--accent-color);"></i> Build long-term trust.</li>
+                <h2 style="color: var(--accent); margin-bottom: 20px;">Our Mission</h2>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 12px;"><i class="fas fa-circle-check" style="color: var(--accent); margin-right: 10px;"></i> Simplify property buying & selling.</li>
+                    <li style="margin-bottom: 12px;"><i class="fas fa-circle-check" style="color: var(--accent); margin-right: 10px;"></i> Guide buyers and sellers through each stage.</li>
+                    <li style="margin-bottom: 12px;"><i class="fas fa-circle-check" style="color: var(--accent); margin-right: 10px;"></i> Ethical practices & long-term trust.</li>
                 </ul>
             </div>
-            <div>
-                <h2>Our Approach</h2>
-                <p>Relationship-driven, clear communication, ethical conduct, and disciplined engagement.</p>
+            <div style="border-left: 2px solid var(--glass); padding-left: 40px;">
+                <h2 style="color: var(--accent); margin-bottom: 20px;">Our Vision</h2>
+                <p>To be a trusted and dependable real estate agency, recognized for making property transactions simple, transparent, and reliable for all stakeholders.</p>
             </div>
         </div>
     </section>
 
+    <!-- Footer Area -->
     <footer>
-        <h2>NextStep Realty</h2>
-        <p>Guiding you to your next home with confidence.</p>
-        <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.6;">&copy; 2026 NextStep Realty. All Rights Reserved.</p>
+        <div class="footer-logo">NextStep Realty</div>
+        <p class="footer-quote">"Guiding buyers and sellers through their next step with confidence"</p>
+        <p style="font-size: 0.8rem; opacity: 0.5;">&copy; 2026 NextStep Realty. All Rights Reserved.</p>
     </footer>
 
-    <a href="https://wa.me/94771234567?text=Hi%20NextStep%20Realty,%20I'm%20interested%20in%20your%20services." class="whatsapp-float" target="_blank">
+    <!-- Floating WhatsApp Button -->
+    <!-- Replace '94771234567' with your actual business number -->
+    <a href="https://wa.me/94771234567?text=Hello%20NextStep%20Realty,%20I'm%20interested%20in%20your%20services." class="whatsapp-btn" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <!-- Scroll Animations JS -->
     <script>
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
+                var elementVisible = 120;
                 if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add("active");
                 }
@@ -360,8 +381,7 @@
         }
 
         window.addEventListener("scroll", reveal);
-        
-        // Initial call
+        // Initial run
         reveal();
     </script>
 </body>
